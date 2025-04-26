@@ -91,7 +91,8 @@ function App() {
       <header
         className="text-slate-200 border-b border-slate-800 shadow-sm flex w-full h-20 justify-between items-center p-5 bg-slate-900"
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2
+         max-md:gap-1">
           <motion.img
             src="/images/zappiQR.png"
             className="w-12 h-12"
@@ -99,35 +100,39 @@ function App() {
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.3 }}
           />
-          <h1 className="font-inter text-2xl font-bold text-yellow-300">ZappiQR</h1>
+          <h1 className="font-inter text-2xl font-bold text-yellow-300
+           max-md:text-xl">ZappiQR</h1>
         </div>
-        <ul className="flex gap-2">
-          <a
-            target="_blank"
-            href="https://github.com/Guikino/qrcode-generator"
-            rel="noopener noreferrer"
-          >
-            <motion.li
-              className="hover:bg-slate-800 font-poppins p-2 flex gap-2 rounded-md transition"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Code/>
-              Código fonte
-            </motion.li>
-          </a>
-          <motion.li
-            onClick={funcaoModalQrCodesGerados}
-            className="hover:bg-slate-800 cursor-pointer flex gap-2 font-poppins p-2 rounded-md transition"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          > <QrCode/>
-            QR codes gerados
-          </motion.li>
-        </ul>
+        <ul className="flex gap-2 max-md:gap-1">
+  <a
+    target="_blank"
+    href="https://github.com/Guikino/ZappiQR"
+    rel="noopener noreferrer"
+  >
+    <motion.li
+      className="hover:bg-slate-800 font-poppins p-2 flex gap-2 rounded-md transition max-md:text-sm"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <Code className="w-6 h-6 max-md:w-8 max-md:h-8" />
+      <span className="max-md:hidden ">Código fonte</span> {/* Esconde o texto com max-md:hidden */}
+    </motion.li>
+  </a>
+  <motion.li
+    onClick={funcaoModalQrCodesGerados}
+    className="hover:bg-slate-800 cursor-pointer flex gap-2 font-poppins p-2 rounded-md transition max-md:text-sm"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <QrCode className="w-6 h-6 max-md:w-8 max-md:h-8" />
+    <span className="max-md:hidden">QR codes gerados</span> {/* Esconde o texto com max-md:hidden */}
+  </motion.li>
+</ul>
+
       </header>
 
-      <main className="text-slate-200 grid grid-cols-3 text-center flex-1 w-full">
+      <main className="text-slate-200 grid grid-cols-3 text-center flex-1 w-full
+      max-md:grid-cols-1 max-md:p-5">
         <section className="flex items-center justify-center flex-col col-span-2 h-full">
         <motion.h1
   initial={{ opacity: 0, y: -50 }}
