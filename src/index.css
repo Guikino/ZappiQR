@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-border-animation input {
+  background: #1e293b;
+  border: 2px solid #475569;
+  transition: all 0.3s ease;
+}
+
+.input-border-animation input:focus {
+  outline: none;
+  border-color: #fed530;
+  box-shadow: 0 0 8px rgba(142, 114, 2, 0.5);
+  transform: scale(1.02);
+}
+
+.input-border-animation input::placeholder {
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+
+.input-border-animation input:focus::placeholder {
+  color: #94a3b8;
+}
+
+.input-border-animation {
+  position: relative;
+}
+
+.input-border-animation input {
+  border: 1px solid #334155; /* Equivalente a border border-slate-700 */
+  background-color: #1e293b; /* Equivalente a bg-slate-800 */
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.input-border-animation input:focus {
+  outline: none;
+  border-color: transparent;
+}
+
+.input-border-animation::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 0.375rem; /* rounded-md */
+  background: linear-gradient(90deg, 
+    #facc15, 
+    transparent 20%, 
+    #facc15 40%, 
+    #facc15 60%, 
+    transparent 80%, 
+    #facc15
+  );
+  background-size: 300% 100%;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.input-border-animation:focus-within::before {
+  opacity: 1;
+  animation: full-border-run 3s linear infinite;
+}
+
+/* Animação para texto do h2 */
+.text-animation {
+  background: linear-gradient(90deg, 
+    #facc15, /* yellow-400 */
+    white, 
+    #facc15 /* yellow-400 */
+  );
+  background-size: 200% 100%;
+  animation: text-gradient 3s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes full-border-run {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 300% 0%;
+  }
+}
+
+@keyframes text-gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+/* Efeito de texto com faixa amarela animada */
+.text-running-light {
+  background: linear-gradient(
+    90deg,
+    #facc15 0%,
+    #ffffff 40%,
+    #facc15 60%,
+    #ffffff 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine-text 3s linear infinite;
+}
+
+@keyframes shine-text {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
