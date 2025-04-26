@@ -93,7 +93,7 @@ function App() {
       >
         <div className="flex items-center gap-2">
           <motion.img
-            src="../public/images/zappiQR.png"
+            src="/images/zappiQR.png"
             className="w-12 h-12"
             alt="logo ZappiQR"
             whileHover={{ scale: 1.1 }}
