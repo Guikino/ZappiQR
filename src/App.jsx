@@ -86,7 +86,7 @@ function App() {
   };
 
   return (
-    <div className="h-screen bg-slate-950 flex flex-col">
+    <div className="h-screen bg-slate-950 flex max-md:h-svh flex-col">
       {/* Header with entrance animation */}
       <header
         className="text-slate-200 border-b border-slate-800 shadow-sm flex w-full h-20 justify-between items-center p-5 bg-slate-900"
@@ -138,7 +138,7 @@ function App() {
   initial={{ opacity: 0, y: -50 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.8 }}
-  className="text-running-light font-inter text-4xl md:text-5xl font-bold mb-4 text-center"
+  className="text-running-light font-inter text-4xl  font-bold mb-4 text-center max-md:text-3xl"
 >
   Gerador de QR Code
 </motion.h1>
@@ -148,7 +148,8 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg italic font-poppins text-transparent bg-clip-text bg-gradient-to-r from-slate-400 via-blue-300 to-slate-400"
+            className="text-lg italic font-poppins text-transparent bg-clip-text
+             bg-gradient-to-r from-slate-400 via-blue-300 to-slate-400 max-md:text-lg"
           >
             Crie QR Codes personalizados para links de forma prática
           </motion.p>
