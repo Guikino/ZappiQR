@@ -2,7 +2,14 @@ import axios from "axios";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { CircleX, Code, Download, LoaderCircle, QrCode, Trash2 } from "lucide-react";
+import {
+  CircleX,
+  Code,
+  Download,
+  LoaderCircle,
+  QrCode,
+  Trash2,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Função para buscar os dados da API
@@ -42,16 +49,23 @@ function App() {
       try {
         const parsedQRCodes = JSON.parse(savedQRCodes);
         if (Array.isArray(parsedQRCodes)) {
-          const validQRCodes = parsedQRCodes.filter((qr) =>
-            qr.id && qr.url && qr.qrCodeUrl && qr.createdAt
+          const validQRCodes = parsedQRCodes.filter(
+            (qr) => qr.id && qr.url && qr.qrCodeUrl && qr.createdAt
           );
           if (validQRCodes.length !== parsedQRCodes.length) {
-            console.warn("Some stored QR codes were invalid. Filtering them out.");
-            localStorage.setItem("generatedQRCodes", JSON.stringify(validQRCodes));
+            console.warn(
+              "Some stored QR codes were invalid. Filtering them out."
+            );
+            localStorage.setItem(
+              "generatedQRCodes",
+              JSON.stringify(validQRCodes)
+            );
           }
           setGeneratedQRCodes(validQRCodes);
         } else {
-          console.warn("Stored QR codes are not an array. Clearing localStorage.");
+          console.warn(
+            "Stored QR codes are not an array. Clearing localStorage."
+          );
           localStorage.removeItem("generatedQRCodes");
         }
       } catch (error) {
@@ -64,7 +78,10 @@ function App() {
   // Save QR codes to localStorage when generatedQRCodes changes, optimized to avoid unnecessary writes
   useEffect(() => {
     if (generatedQRCodes.length > 0) {
-      localStorage.setItem("generatedQRCodes", JSON.stringify(generatedQRCodes));
+      localStorage.setItem(
+        "generatedQRCodes",
+        JSON.stringify(generatedQRCodes)
+      );
     } else {
       localStorage.removeItem("generatedQRCodes");
     }
@@ -125,7 +142,7 @@ function App() {
         if (result.isSuccess && result.data) {
           setQrCode(result.data);
           // Check if QR code already exists
-          const exists = generatedQRCodes.some(qr => qr.url === inputValue);
+          const exists = generatedQRCodes.some((qr) => qr.url === inputValue);
           if (!exists) {
             // Add new QR code to the generatedQRCodes array
             const newQRCode = {
@@ -137,7 +154,9 @@ function App() {
             setGeneratedQRCodes((prev) => [newQRCode, ...prev]);
             showTemporaryNotification("QR Code gerado com sucesso!");
           } else {
-            showTemporaryNotification("Este QR Code já foi gerado anteriormente!");
+            showTemporaryNotification(
+              "Este QR Code já foi gerado anteriormente!"
+            );
           }
         }
       } catch (err) {
@@ -170,7 +189,9 @@ function App() {
       showTemporaryNotification("Download iniciado com sucesso!");
     } catch (error) {
       console.error("Erro ao baixar o QR code:", error);
-      showTemporaryNotification("Não foi possível baixar o QR code. Tente novamente.");
+      showTemporaryNotification(
+        "Não foi possível baixar o QR code. Tente novamente."
+      );
     }
   };
 
@@ -396,9 +417,8 @@ function App() {
                 >
                   <CircleX />
                 </motion.button>
-
               </div>
-              
+
               <p className="text-slate-200 text-sm text-center font-poppins">
                 Por favor, insira uma URL válida (ex: https://google.com).
               </p>
@@ -433,8 +453,12 @@ function App() {
                     <motion.button
                       onClick={clearAllQRCodes}
                       className="text-white hover:text-red-500"
-                      whileHover={{ scale: 1.05, backgroundColor: "rgba(239, 68, 68, 0.1)" }}
+                      whileHover={{
+                        scale: 1.05,
+                        backgroundColor: "rgba(239, 68, 68, 0.1)",
+                      }}
                       whileTap={{ scale: 0.95 }}
+                      title="limpar tudo"
                     >
                       <Trash2 />
                     </motion.button>
@@ -471,7 +495,7 @@ function App() {
                       animate={{
                         opacity: 1,
                         y: 0,
-                        transition: { delay: index * 0.1, duration: 0.3 }
+                        transition: { delay: index * 0.1, duration: 0.3 },
                       }}
                       exit={{ opacity: 0, scale: 0.8 }}
                       whileHover={{ scale: 1.02 }}
@@ -480,12 +504,12 @@ function App() {
                       <div className="absolute top-0 right-0 p-1">
                         <motion.button
                           onClick={() => deleteQRCode(item.id)}
-                          className="text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100"
+                          className="text-slate-400 hover:text-red-500  "
                           whileHover={{ scale: 1.2 }}
                           whileTap={{ scale: 0.9 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <Trash2 size={16} />
+                          <Trash2 className="" size={16} />
                         </motion.button>
                       </div>
                       <div className="flex flex-col items-center">
@@ -504,7 +528,10 @@ function App() {
                             downloadQRCode(item.qrCodeUrl, item.url.slice(8))
                           }
                           className="mt-2 bg-yellow-500 text-white font-bold py-1 px-4 rounded-md mx-auto block flex items-center gap-1"
-                          whileHover={{ scale: 1.05, backgroundColor: "#facc15" }}
+                          whileHover={{
+                            scale: 1.05,
+                            backgroundColor: "#facc15",
+                          }}
                           whileTap={{ scale: 0.95 }}
                         >
                           <Download size={16} />
