@@ -29,8 +29,8 @@
 }
 
 .input-border-animation input {
-  border: 1px solid #334155; /* Equivalente a border border-slate-700 */
-  background-color: #1e293b; /* Equivalente a bg-slate-800 */
+  border: 1px solid #334155; 
+  background-color: #1e293b;
   transition: all 0.3s;
   position: relative;
   z-index: 1;
