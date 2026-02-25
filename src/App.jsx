@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CircleX, Code, Download, LoaderCircle, QrCode, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Função para buscar os dados da API
+
 const fetchQRCode = async (inputValue) => {
   try {
     const response = await axios.post(
@@ -35,7 +35,7 @@ function App() {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
 
-  //- Load QR codes from localStorage on mount with error handling and validation
+ 
   useEffect(() => {
     const savedQRCodes = localStorage.getItem("generatedQRCodes");
     if (savedQRCodes) {
@@ -61,7 +61,7 @@ function App() {
     }
   }, []);
 
-  // Save QR codes to localStorage when generatedQRCodes changes, optimized to avoid unnecessary writes
+
   useEffect(() => {
     if (generatedQRCodes.length > 0) {
       localStorage.setItem("generatedQRCodes", JSON.stringify(generatedQRCodes));
@@ -70,7 +70,7 @@ function App() {
     }
   }, [generatedQRCodes]);
 
-  // Sync state across tabs
+
   useEffect(() => {
     const handleStorageChange = (event) => {
       if (event.key === "generatedQRCodes") {
@@ -124,10 +124,10 @@ function App() {
         const result = await refetch();
         if (result.isSuccess && result.data) {
           setQrCode(result.data);
-          // Check if QR code already exists
+
           const exists = generatedQRCodes.some(qr => qr.url === inputValue);
           if (!exists) {
-            // Add new QR code to the generatedQRCodes array
+            
             const newQRCode = {
               id: Date.now(),
               url: inputValue,
@@ -191,7 +191,6 @@ function App() {
 
   return (
     <div className="h-screen bg-slate-950 flex max-md:h-svh flex-col relative">
-      {/* Notification Toast */}
       <AnimatePresence>
         {showNotification && (
           <motion.div
@@ -367,7 +366,7 @@ function App() {
         </section>
       </main>
 
-      {/* Modal para URL inválida */}
+
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
@@ -407,7 +406,6 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* Modal com os QR codes gerados */}
       <AnimatePresence>
         {modalQrCodesGerados && (
           <motion.div
